@@ -4,7 +4,11 @@ from tkinter import messagebox
 import threading
 
 def clean_transcript(transcript):
+    # Remove HTML tags
     clean_text = re.sub('<[^<]+?>', '', transcript)
+    # Ensure there is a space after each sentence
+    clean_text = re.sub(r'(?<=[.!?])\s*(?=[A-Za-z])', ' ', clean_text)
+    # Replace multiple spaces with a single space
     clean_text = re.sub('\s+', ' ', clean_text).strip()
     return clean_text
 
